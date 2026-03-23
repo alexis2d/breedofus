@@ -123,9 +123,9 @@ export interface XPCalculationResult {
 
 // Fonction pour calculer l'XP cumulative jusqu'à un niveau
 const getCumulativeXP = (level: number): number => {
-  if (level <= 0) return 0;
+  if (level <= 1) return 0;
   if (level <= 100) {
-    return (level / 100) * XP_PER_LEVEL[100];
+    return ((level - 1) / 99) * XP_PER_LEVEL[100];
   }
   // Interpolation linéaire entre 100 et 200
   return XP_PER_LEVEL[100] + ((level - 100) / 100) * (XP_PER_LEVEL[200] - XP_PER_LEVEL[100]);

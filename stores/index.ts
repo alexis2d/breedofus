@@ -21,7 +21,8 @@ const createDefaultStats = (): MountStats => ({
   maturity: 0,
   endurance: 0,
   love: 0,
-  experience: 0,
+  baffeur: 0,
+  caresseur: 0,
   serenity: 0,
 });
 
@@ -97,7 +98,8 @@ export const useEnclosureStore = create<EnclosureStore>((set) => ({
         endurance: createDefaultGauge('endurance'),
         maturity: createDefaultGauge('maturity'),
         love: createDefaultGauge('love'),
-        experience: createDefaultGauge('experience'),
+        baffeur: createDefaultGauge('baffeur'),
+        caresseur: createDefaultGauge('caresseur'),
       },
       activeGauges: [],
     };

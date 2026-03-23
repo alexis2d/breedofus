@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -17,7 +17,8 @@ const gaugeOptions: { value: GaugeType; label: string }[] = [
   { value: "love", label: "Amour" },
   { value: "maturity", label: "Maturité" },
   { value: "endurance", label: "Endurance" },
-  { value: "experience", label: "Expérience" },
+  { value: "baffeur", label: "Baffeur" },
+  { value: "caresseur", label: "Caresseur" },
 ];
 
 // Fuel value ranges determine consumption per 10 seconds:
@@ -45,6 +46,17 @@ export default function TimersPage() {
 
   // Calculate tier based on fuel value
   const tier = calculateCurrentTier(fuelValue);
+
+  // Auto-adjust values for baffeur/caresseur (range -5000 to 5000)
+  useEffect(() => {
+    if (gaugeType === "baffeur" || gaugeType === "caresseur") {
+      setCurrentValue(-5000);
+      setTargetValue(5000);
+    } else if (gaugeType === "love" || gaugeType === "maturity" || gaugeType === "endurance") {
+      setCurrentValue(0);
+      setTargetValue(20000);
+    }
+  }, [gaugeType]);
 
   const gaugeResult = useMemo(() => {
     return calculateTimeToFillGauge(
@@ -199,7 +211,6 @@ export default function TimersPage() {
                 <ul className="text-sm text-muted-foreground space-y-1">
                   <li>• Valeur à gagner: {targetValue - currentValue}</li>
                   <li>• Tier: {tier} ({["Extrait", "Philtre", "Potion", "Élixir"][tier - 1]})</li>
-                  <li>• Bonus capacité: Aucun</li>
                 </ul>
               </div>
             </CardContent>

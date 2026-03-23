@@ -18,7 +18,7 @@ export type FuelType = 'extrait' | 'philtre' | 'potion' | 'élixir';
 export type FuelSize = 'minuscule' | 'petit' | 'normal' | 'grand' | 'gigantesque';
 
 // Types de jauges
-export type GaugeType = 'serenity' | 'endurance' | 'maturity' | 'love' | 'experience';
+export type GaugeType = 'serenity' | 'endurance' | 'maturity' | 'love' | 'baffeur' | 'caresseur';
 export type Tier = 1 | 2 | 3 | 4;
 
 // Types de Makinas
@@ -29,7 +29,8 @@ export interface MountStats {
   maturity: number;      // 0-20,000
   endurance: number;     // 0-20,000
   love: number;          // 0-20,000
-  experience: number;
+  baffeur: number;       // -5,000 to +5,000
+  caresseur: number;    // -5,000 to +5,000
   serenity: number;      // -5,000 to +5,000
 }
 
@@ -103,6 +104,10 @@ export const GAME_CONSTANTS = {
   MAX_STAT_VALUE: 20000,
   SERENITY_MIN: -5000,
   SERENITY_MAX: 5000,
+  BAFFEUR_MIN: -5000,
+  BAFFEUR_MAX: 5000,
+  CARESSEUR_MIN: -5000,
+  CARESSEUR_MAX: 5000,
   
   TIER_RANGES: {
     1: { min: 0, max: 40000 },
